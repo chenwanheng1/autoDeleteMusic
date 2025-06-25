@@ -1,0 +1,2 @@
+# autoDeleteMusic
+自动删除navidrome中不喜欢的歌曲
