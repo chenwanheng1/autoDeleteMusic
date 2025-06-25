@@ -1,6 +1,6 @@
 FROM python:3.7
 
-WORKDIR ./docker_demo
+WORKDIR ./autoDeleteMusic
 
 ADD . .
 
