@@ -12,12 +12,12 @@ if __name__ == '__main__':
     # 自己音乐库的位置
     MUSIC_DIR = Path("/vol3/1000/音乐")
     #日志存放的位置
-    LOG_FILE = Path("/vol2/1000/home/script/autoDeleteMusic.log")
+    LOG_FILE = Path("/vol2/1000/home/script/logs/autoDeleteMusic.log")
     #下面这三个参数填自己的navidrome服务器信息
     USERNAME = ""
     PASSWORD = ""
     BASE_URL = ""
-    SLEEP_TIME = 10
+    SLEEP_TIME = 20
     TOKEN = ""
     ID = ""
 
@@ -73,12 +73,12 @@ if __name__ == '__main__':
 
                 #按歌曲id从库中移除
                 httpFun.delete_miss_file(http_client,"/api/missing",miss_list,TOKEN,ID)
-                log_entry = f"[{time.ctime()}] 完成删除操作,进入等待状态..."
+                log_entry = f"\n[{time.ctime()}] 完成删除操作,进入等待状态..."
                 print(log_entry)
                 fileOp.append_log(LOG_FILE, log_entry)
                 time.sleep(SLEEP_TIME)
         else:
-            log_entry = f"[{time.ctime()}] token或者id为空! token:[{TOKEN}] || id:[{ID}]..."
+            log_entry = f"\n[{time.ctime()}] token或者id为空! token:[{TOKEN}] || id:[{ID}]..."
             print(log_entry)
             fileOp.append_log(LOG_FILE, log_entry)
     except KeyboardInterrupt:

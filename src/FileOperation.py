@@ -5,11 +5,11 @@ def create_log_file(log_file):
     try:
         if log_file.exists():
             log_file.unlink()  # 删除旧日志
-            print(f"[{time.ctime()}] 已删除旧日志文件")
+            print(f"\n[{time.ctime()}] 已删除旧日志文件")
         log_file.touch()  # 创建新日志文件
-        print(f"[{time.ctime()}] 已创建新日志文件")
+        print(f"\n[{time.ctime()}] 已创建新日志文件")
     except PermissionError:
-        print(f"[{time.ctime()}] 日志文件操作权限不足")
+        print(f"\n[{time.ctime()}] 日志文件操作权限不足")
 
 def append_log(log_file,log_entry):
     # 记录到日志文件
@@ -37,5 +37,5 @@ def extract_filename(s: str) -> str:
             last_dot = substring.rfind('.')
             return substring[:last_dot] if last_dot != -1 else substring
     except Exception as e:
-        print(f"处理异常: {str(e)}")
+        print(f"\n处理异常: {str(e)}")
         return ""
