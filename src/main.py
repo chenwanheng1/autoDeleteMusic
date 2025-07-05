@@ -1,4 +1,6 @@
 import os
+from time import sleep
+
 import DeleteMusic
 from pathlib import Path
 import time
@@ -36,10 +38,16 @@ if __name__ == '__main__':
         #初始化日志
         fileOp.create_log_file(LOG_FILE)
         #登录navidrome
-        TOKEN,ID = httpFun.login(http_client,"/auth/login",USERNAME,PASSWORD)
-
+        cnt = 0
+        while  cnt < 10:
+            TOKEN, ID = httpFun.login(http_client, "/auth/login", USERNAME, PASSWORD)
+            if len(TOKEN) > 0 or len(ID) > 0:
+                break
+            else:
+                time.sleep(SLEEP_TIME)
+            cnt = cnt + 1
         #开始循环处理歌单
-        if len(TOKEN) > 0 and len(ID) > 0:
+        if len(TOKEN) > 0 or len(ID) > 0:
             while True:
                 #拉取歌单，并寻找【不喜欢】
                 delete_list_id = httpFun.get_play_list(http_client,"/api/playlist",0,0,TOKEN,ID)
